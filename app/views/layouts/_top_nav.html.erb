@@ -21,6 +21,15 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <% if !current_user%>
+        <li>
+          <%= link_to 'Log In!', login_path %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to 'Log out', logout_path %>
+        </li>
+      <% end%>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <%# <li class="nav-item dropdown">
           <a
@@ -64,6 +73,15 @@
           <%= link_to cart_path, class: "nav-link " do %> <%= fa_icon "shopping-cart" %>
           My Cart (<%= cart.size %>) <% end %>
         </li>
+        <% if !current_user%>
+          <li>
+            <%= link_to 'Sign up!', signup_path %>
+          </li>
+        <% else %>
+          <li>
+            <a>Logged In As: <%= "#{current_user.first_name} #{current_user.last_name}"%></a>
+          </li>
+        <% end%>
       </ul>
     </div>
   </div>
